@@ -1,20 +1,53 @@
+# ============================================================
+# ARCHIVO: cliente.py
+# Este archivo contiene la clase Cliente.
+# La clase Cliente hereda de la clase Persona.
+# ============================================================
+
+
+# Importación de la clase Persona.
+from models.persona import Persona
+
+# Importación de excepciones personalizadas.
 from utils.excepciones import ClienteInvalidoError
 
-class Cliente:
+
+# Clase Cliente.
+class Cliente(Persona):
+
+    # Constructor de la clase.
     def __init__(self, nombre, email):
-        self.__nombre = nombre
+
+        # Se llama al constructor de Persona.
+        super().__init__(nombre)
+
+        # Encapsulación:
+        # El atributo email será privado.
         self.__email = email
-        self.validar()
 
-    def validar(self):
-        if not self.__nombre or len(self.__nombre) < 3:
-            raise ClienteInvalidoError("Nombre inválido")
+        # Se validan los datos.
+        self.validar_datos()
 
+    # Método encargado de validar datos.
+    def validar_datos(self):
+
+        # Validar longitud del nombre.
+        if len(self.nombre) < 3:
+            raise ClienteInvalidoError(
+                "El nombre debe tener mínimo 3 caracteres."
+            )
+
+        # Validar correo electrónico.
         if "@" not in self.__email:
-            raise ClienteInvalidoError("Email inválido")
+            raise ClienteInvalidoError(
+                "Correo electrónico inválido."
+            )
 
-    def get_nombre(self):
-        return self.__nombre
-
+    # Método getter.
     def get_email(self):
         return self.__email
+
+    # Método obligatorio heredado.
+    def mostrar_informacion(self):
+
+        return f"Cliente: {self.nombre} - Email: {self.__email}"
