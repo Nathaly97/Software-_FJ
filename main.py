@@ -271,7 +271,27 @@ except Exception as error:
 
     registrar_log(f"Error asesoría ciberseguridad: {error}")
 
+# ============================================================
+# UNDÉCIMA OPERACIÓN
+# USO DE TRY / EXCEPT / ELSE
+# ============================================================
 
+try:
+
+    # Crear cliente válido.
+    cliente5 = Cliente("Andres", "andres@gmail.com")
+
+except Exception as error:
+
+    # Registrar error.
+    registrar_log(f"Error cliente Andres: {error}")
+
+else:
+
+    # Este bloque se ejecuta si NO ocurre error.
+    clientes.append(cliente5)
+
+    print("Cliente Andres registrado correctamente.")
 # ============================================================
 # BLOQUE FINALLY
 # ------------------------------------------------------------
