@@ -305,7 +305,43 @@ finally:
     print("Proceso finalizado correctamente.")
     print("===================================")
 
+# ============================================================
+# MENÚ INTERACTIVO
+# ------------------------------------------------------------
+# Esta sección permite al usuario ingresar datos
+# manualmente desde teclado.
+# ============================================================
 
+print("\n===================================")
+print("REGISTRO MANUAL DE CLIENTES")
+print("===================================")
+
+try:
+
+    # Solicitar nombre.
+    nombre = input("Ingrese el nombre del cliente: ")
+
+    # Solicitar correo.
+    email = input("Ingrese el correo electrónico: ")
+
+    # Crear cliente.
+    nuevo_cliente = Cliente(nombre, email)
+
+except Exception as error:
+
+    # Registrar error en logs.
+    registrar_log(f"Error registro manual: {error}")
+
+    print("No fue posible registrar el cliente.")
+
+else:
+
+    # Este bloque se ejecuta si no ocurre ningún error.
+    clientes.append(nuevo_cliente)
+
+    print("Cliente registrado correctamente.")
+
+    print(nuevo_cliente.mostrar_informacion())
 # ============================================================
 # MOSTRAR RESUMEN FINAL
 # ============================================================
